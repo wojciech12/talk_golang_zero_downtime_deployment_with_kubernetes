@@ -19,18 +19,28 @@ namespace ZeroDowntimeDeployment.Middlewares
 
         public async Task InvokeAsync(HttpContext context)
         {
-            var path = context.Request.Path;
-            if (path.Value.ToLowerInvariant() == "/healthz")
+            var path = context.Request.Path.Value.ToLowerInvariant();
+            switch (path)
             {
-                // Determine application health
-                context.Response.StatusCode = _healthService.IsHealth() 
-                    ? StatusCodes.Status200OK
-                    : StatusCodes.Status500InternalServerError;
-            }
-            else
-            {
-                // Call the next delegate/middleware in the pipeline
-                await _next(context);                
+                case "/healthz":
+                    context.Response.StatusCode = _healthService.IsHealth()
+                        ? StatusCodes.Status200OK
+                        : StatusCodes.Status500InternalServerError;
+                    break;
+
+                case "/dohealthz":
+                    _healthService.SetHealth(true);
+                    context.Response.StatusCode = StatusCodes.Status200OK;
+                    break;
+
+                case "/dounhealthz":
+                    _healthService.SetHealth(false);
+                    context.Response.StatusCode = StatusCodes.Status200OK;
+                    break;
+
+                default:
+                    await _next(context);                
+                    break;
             }
         }
     }
