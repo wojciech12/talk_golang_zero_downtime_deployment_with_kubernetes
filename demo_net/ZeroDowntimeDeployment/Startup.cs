@@ -9,6 +9,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using ZeroDowntimeDeployment.Middlewares;
+using ZeroDowntimeDeployment.Services;
+using ZeroDowntimeDeployment.Services.Implementations;
 
 namespace ZeroDowntimeDeployment
 {
@@ -25,11 +28,13 @@ namespace ZeroDowntimeDeployment
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddSingleton<IHealthService, HealthService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseMiddleware<HealthzMiddleware>();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
