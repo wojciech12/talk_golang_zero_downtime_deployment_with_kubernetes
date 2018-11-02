@@ -6,7 +6,7 @@ namespace ZeroDowntimeDeployment.Controllers
     {
         [HttpGet]
         [Route("/model")]
-        public ActionResult Get()
+        public IActionResult Get()
         {
             return Ok();
         }
