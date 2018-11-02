@@ -35,7 +35,7 @@ namespace ZeroDowntimeDeployment
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseMiddleware<HealthzMiddleware>();
+            app.UseMiddleware<LivenessProbeMiddleware>();
             app.UseMiddleware<ReadyMiddleware>();
             if (env.IsDevelopment())
             {
