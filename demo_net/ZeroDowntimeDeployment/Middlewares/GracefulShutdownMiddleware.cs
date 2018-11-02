@@ -19,6 +19,7 @@ namespace ZeroDowntimeDeployment.Middlewares
         public GracefulShutdownMiddleware(RequestDelegate next, IApplicationLifetime applicationLifetime)
         {
             _next = next;
+
             AppDomain.CurrentDomain.ProcessExit += OnProcessExit;
             AssemblyLoadContext.Default.Unloading += OnUnloading;
             Console.CancelKeyPress += ConsoleOnCancelKeyPress;
