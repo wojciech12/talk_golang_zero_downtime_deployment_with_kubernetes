@@ -12,223 +12,224 @@ demo/vendor/
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # User-specific files
-*.rsuser
-*.suo
-*.user
-*.userosscache
-*.sln.docstates
+demo_net/*.rsuser
+demo_net/*.suo
+demo_net/*.user
+demo_net/*.userosscache
+demo_net/*.sln.docstates
 
 # User-specific files (MonoDevelop/Xamarin Studio)
-*.userprefs
+demo_net/*.userprefs
 
 # Build results
-[Dd]ebug/
-[Dd]ebugPublic/
-[Rr]elease/
-[Rr]eleases/
-x64/
-x86/
-bld/
-[Bb]in/
-[Oo]bj/
-[Ll]og/
+demo_net/[Dd]ebug/
+demo_net/[Dd]ebugPublic/
+demo_net/[Rr]elease/
+demo_net/[Rr]eleases/
+demo_net/x64/
+demo_net/x86/
+demo_net/bld/
+demo_net/[Bb]in/
+demo_net/[Oo]bj/
+demo_net/[Ll]og/
 
 # Visual Studio 2015/2017 cache/options directory
-.vs/
-# Uncomment if you have tasks that create the project's static files in wwwroot
-#wwwroot/
+demo_net/.vs/
 
 # Visual Studio 2017 auto generated files
-Generated\ Files/
+demo_net/Generated\ Files/
 
 # MSTest test Results
-[Tt]est[Rr]esult*/
-[Bb]uild[Ll]og.*
+demo_net/[Tt]est[Rr]esult*/
+demo_net/[Bb]uild[Ll]og.*
 
 # NUNIT
-*.VisualState.xml
-TestResult.xml
+demo_net/*.VisualState.xml
+demo_net/TestResult.xml
 
 # Build Results of an ATL Project
-[Dd]ebugPS/
-[Rr]eleasePS/
-dlldata.c
+demo_net/[Dd]ebugPS/
+demo_net/[Rr]eleasePS/
+demo_net/dlldata.c
 
 # Benchmark Results
-BenchmarkDotNet.Artifacts/
+demo_net/BenchmarkDotNet.Artifacts/
 
 # .NET Core
-project.lock.json
-project.fragment.lock.json
-artifacts/
+demo_net/project.lock.json
+demo_net/project.fragment.lock.json
+demo_net/artifacts/
 
 # StyleCop
-StyleCopReport.xml
+demo_net/StyleCopReport.xml
 
 # Files built by Visual Studio
-*_i.c
-*_p.c
-*_h.h
-*.ilk
-*.meta
-*.obj
-*.iobj
-*.pch
-*.pdb
-*.ipdb
-*.pgc
-*.pgd
-*.rsp
-*.sbr
-*.tlb
-*.tli
-*.tlh
-*.tmp
-*.tmp_proj
-*_wpftmp.csproj
-*.log
-*.vspscc
-*.vssscc
-.builds
-*.pidb
-*.svclog
-*.scc
+demo_net/*/bin
+demo_net/**/obj
+demo_net/**/*.csproj.user
+demo_net/*_i.c
+demo_net/*_p.c
+demo_net/*_h.h
+demo_net/*.ilk
+demo_net/*.meta
+demo_net/*.obj
+demo_net/*.iobj
+demo_net/*.pch
+demo_net/*.pdb
+demo_net/*.ipdb
+demo_net/*.pgc
+demo_net/*.pgd
+demo_net/*.rsp
+demo_net/*.sbr
+demo_net/*.tlb
+demo_net/*.tli
+demo_net/*.tlh
+demo_net/*.tmp
+demo_net/*.tmp_proj
+demo_net/*_wpftmp.csproj
+demo_net/*.log
+demo_net/*.vspscc
+demo_net/*.vssscc
+demo_net/.builds
+demo_net/*.pidb
+demo_net/*.svclog
+demo_net/*.scc
 
 # Chutzpah Test files
-_Chutzpah*
+demo_net/_Chutzpah*
 
 # Visual C++ cache files
-ipch/
-*.aps
-*.ncb
-*.opendb
-*.opensdf
-*.sdf
-*.cachefile
-*.VC.db
-*.VC.VC.opendb
+demo_net/ipch/
+demo_net/*.aps
+demo_net/*.ncb
+demo_net/*.opendb
+demo_net/*.opensdf
+demo_net/*.sdf
+demo_net/*.cachefile
+demo_net/*.VC.db
+demo_net/*.VC.VC.opendb
 
 # Visual Studio profiler
-*.psess
-*.vsp
-*.vspx
-*.sap
+demo_net/*.psess
+demo_net/*.vsp
+demo_net/*.vspx
+demo_net/*.sap
 
 # Visual Studio Trace Files
-*.e2e
+demo_net/*.e2e
 
 # TFS 2012 Local Workspace
-$tf/
+demo_net/$tf/
 
 # Guidance Automation Toolkit
-*.gpState
+demo_net/*.gpState
 
 # ReSharper is a .NET coding add-in
-_ReSharper*/
-*.[Rr]e[Ss]harper
-*.DotSettings.user
+demo_net/_ReSharper*/
+demo_net/*.[Rr]e[Ss]harper
+demo_net/*.DotSettings.user
 
 # JustCode is a .NET coding add-in
-.JustCode
+demo_net/.JustCode
 
 # TeamCity is a build add-in
-_TeamCity*
+demo_net/_TeamCity*
 
 # DotCover is a Code Coverage Tool
-*.dotCover
+demo_net/*.dotCover
 
 # AxoCover is a Code Coverage Tool
-.axoCover/*
-!.axoCover/settings.json
+demo_net/.axoCover/*
+demo_net/!.axoCover/settings.json
 
 # Visual Studio code coverage results
-*.coverage
-*.coveragexml
+demo_net/*.coverage
+demo_net/*.coveragexml
 
 # NCrunch
-_NCrunch_*
-.*crunch*.local.xml
-nCrunchTemp_*
+demo_net/_NCrunch_*
+demo_net/.*crunch*.local.xml
+demo_net/nCrunchTemp_*
 
 # MightyMoose
-*.mm.*
-AutoTest.Net/
+demo_net/*.mm.*
+demo_net/AutoTest.Net/
 
 # Web workbench (sass)
-.sass-cache/
+demo_net/.sass-cache/
 
 # Installshield output folder
-[Ee]xpress/
+demo_net/[Ee]xpress/
 
 # DocProject is a documentation generator add-in
-DocProject/buildhelp/
-DocProject/Help/*.HxT
-DocProject/Help/*.HxC
-DocProject/Help/*.hhc
-DocProject/Help/*.hhk
-DocProject/Help/*.hhp
-DocProject/Help/Html2
-DocProject/Help/html
+demo_net/DocProject/buildhelp/
+demo_net/DocProject/Help/*.HxT
+demo_net/DocProject/Help/*.HxC
+demo_net/DocProject/Help/*.hhc
+demo_net/DocProject/Help/*.hhk
+demo_net/DocProject/Help/*.hhp
+demo_net/DocProject/Help/Html2
+demo_net/DocProject/Help/html
 
 # Click-Once directory
-publish/
+demo_net/publish/
 
 # Publish Web Output
-*.[Pp]ublish.xml
-*.azurePubxml
-# Note: Comment the next line if you want to checkin your web deploy settings,
-# but database connection strings (with potential passwords) will be unencrypted
-*.pubxml
-*.publishproj
+demo_net/*.[Pp]ublish.xml
+demo_net/*.azurePubxml
+demo_net/# Note: Comment the next line if you want to checkin your web deploy settings,
+demo_net/# but database connection strings (with potential passwords) will be unencrypted
+demo_net/*.pubxml
+demo_net/*.publishproj
 
 # Microsoft Azure Web App publish settings. Comment the next line if you want to
 # checkin your Azure Web App publish settings, but sensitive information contained
 # in these scripts will be unencrypted
-PublishScripts/
+demo_net/PublishScripts/
 
 # NuGet Packages
-*.nupkg
+demo_net/*.nupkg
 # The packages folder can be ignored because of Package Restore
-**/[Pp]ackages/*
+demo_net/**/[Pp]ackages/*
 # except build/, which is used as an MSBuild target.
-!**/[Pp]ackages/build/
+demo_net/!**/[Pp]ackages/build/
 # Uncomment if necessary however generally it will be regenerated when needed
 #!**/[Pp]ackages/repositories.config
 # NuGet v3's project.json files produces more ignorable files
-*.nuget.props
-*.nuget.targets
+demo_net/*.nuget.props
+demo_net/*.nuget.targets
 
 # Microsoft Azure Build Output
-csx/
-*.build.csdef
+demo_net/csx/
+demo_net/*.build.csdef
 
 # Microsoft Azure Emulator
-ecf/
-rcf/
+demo_net/ecf/
+demo_net/rcf/
 
 # Windows Store app package directories and files
-AppPackages/
-BundleArtifacts/
-Package.StoreAssociation.xml
-_pkginfo.txt
-*.appx
+demo_net/AppPackages/
+demo_net/BundleArtifacts/
+demo_net/Package.StoreAssociation.xml
+demo_net/_pkginfo.txt
+demo_net/*.appx
 
 # Visual Studio cache files
 # files ending in .cache can be ignored
-*.[Cc]ache
+demo_net/*.[Cc]ache
 # but keep track of directories ending in .cache
-!*.[Cc]ache/
+demo_net/!*.[Cc]ache/
 
 # Others
-ClientBin/
-~$*
-*~
-*.dbmdl
-*.dbproj.schemaview
-*.jfm
-*.pfx
-*.publishsettings
-orleans.codegen.cs
+demo_net/ClientBin/
+demo_net/~$*
+demo_net/*~
+demo_net/*.dbmdl
+demo_net/*.dbproj.schemaview
+demo_net/*.jfm
+demo_net/*.pfx
+demo_net/*.publishsettings
+demo_net/orleans.codegen.cs
 
 # Including strong name files can present a security risk
 # (https://github.com/github/gitignore/pull/2483#issue-259490424)
@@ -239,104 +240,104 @@ orleans.codegen.cs
 #bower_components/
 
 # RIA/Silverlight projects
-Generated_Code/
+demo_net/Generated_Code/
 
 # Backup & report files from converting an old project file
 # to a newer Visual Studio version. Backup files are not needed,
 # because we have git ;-)
-_UpgradeReport_Files/
-Backup*/
-UpgradeLog*.XML
-UpgradeLog*.htm
-ServiceFabricBackup/
-*.rptproj.bak
+demo_net/_UpgradeReport_Files/
+demo_net/Backup*/
+demo_net/UpgradeLog*.XML
+demo_net/UpgradeLog*.htm
+demo_net/ServiceFabricBackup/
+demo_net/*.rptproj.bak
 
 # SQL Server files
-*.mdf
-*.ldf
-*.ndf
+demo_net/*.mdf
+demo_net/*.ldf
+demo_net/*.ndf
 
 # Business Intelligence projects
-*.rdl.data
-*.bim.layout
-*.bim_*.settings
-*.rptproj.rsuser
+demo_net/*.rdl.data
+demo_net/*.bim.layout
+demo_net/*.bim_*.settings
+demo_net/*.rptproj.rsuser
 
 # Microsoft Fakes
-FakesAssemblies/
+demo_net/FakesAssemblies/
 
 # GhostDoc plugin setting file
-*.GhostDoc.xml
+demo_net/*.GhostDoc.xml
 
 # Node.js Tools for Visual Studio
-.ntvs_analysis.dat
-node_modules/
+demo_net/.ntvs_analysis.dat
+demo_net/node_modules/
 
 # Visual Studio 6 build log
-*.plg
+demo_net/*.plg
 
 # Visual Studio 6 workspace options file
-*.opt
+demo_net/*.opt
 
 # Visual Studio 6 auto-generated workspace file (contains which files were open etc.)
-*.vbw
+demo_net/*.vbw
 
 # Visual Studio LightSwitch build output
-**/*.HTMLClient/GeneratedArtifacts
-**/*.DesktopClient/GeneratedArtifacts
-**/*.DesktopClient/ModelManifest.xml
-**/*.Server/GeneratedArtifacts
-**/*.Server/ModelManifest.xml
-_Pvt_Extensions
+demo_net/**/*.HTMLClient/GeneratedArtifacts
+demo_net/**/*.DesktopClient/GeneratedArtifacts
+demo_net/**/*.DesktopClient/ModelManifest.xml
+demo_net/**/*.Server/GeneratedArtifacts
+demo_net/**/*.Server/ModelManifest.xml
+demo_net/_Pvt_Extensions
 
 # Paket dependency manager
-.paket/paket.exe
-paket-files/
+demo_net/.paket/paket.exe
+demo_net/paket-files/
 
 # FAKE - F# Make
-.fake/
+demo_net/.fake/
 
 # JetBrains Rider
-.idea/
-*.sln.iml
+demo_net/.idea/
+demo_net/*.sln.iml
 
 # CodeRush personal settings
-.cr/personal
+demo_net/.cr/personal
 
 # Python Tools for Visual Studio (PTVS)
-__pycache__/
-*.pyc
+demo_net/__pycache__/
+demo_net/*.pyc
 
 # Cake - Uncomment if you are using it
 # tools/**
 # !tools/packages.config
 
 # Tabs Studio
-*.tss
+demo_net/*.tss
 
 # Telerik's JustMock configuration file
-*.jmconfig
+demo_net/*.jmconfig
 
 # BizTalk build output
-*.btp.cs
-*.btm.cs
-*.odx.cs
-*.xsd.cs
+demo_net/*.btp.cs
+demo_net/*.btm.cs
+demo_net/*.odx.cs
+demo_net/*.xsd.cs
 
 # OpenCover UI analysis results
-OpenCover/
+demo_net/OpenCover/
 
 # Azure Stream Analytics local run output
-ASALocalRun/
+demo_net/ASALocalRun/
 
 # MSBuild Binary and Structured Log
-*.binlog
+demo_net/*.binlog
 
 # NVidia Nsight GPU debugger configuration file
-*.nvuser
+demo_net/*.nvuser
 
 # MFractors (Xamarin productivity tool) working folder
-.mfractor/
+demo_net/.mfractor/
 
 # Local History for Visual Studio
-.localhistory/
+demo_net/.localhistory/
