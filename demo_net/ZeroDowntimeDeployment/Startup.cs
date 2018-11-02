@@ -28,10 +28,9 @@ namespace ZeroDowntimeDeployment
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApplicationLifetime applicationLifetime)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            //app.UseGracefulShutdown();
-            app.UseMiddleware<GracefulShutdownMiddleware>(applicationLifetime);
+            app.UseGracefulShutdown();
             app.UseMiddleware<LivenessProbeMiddleware>();
             app.UseMiddleware<ReadyMiddleware>();
 
