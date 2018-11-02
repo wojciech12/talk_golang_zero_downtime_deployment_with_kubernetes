@@ -1,7 +1,6 @@
-﻿using System;
-using System.Runtime.Loader;
+﻿using System.Runtime.Loader;
+using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 
 namespace ZeroDowntimeDeployment.Middlewares
@@ -16,15 +15,13 @@ namespace ZeroDowntimeDeployment.Middlewares
         private static bool _shutdown;
         private readonly object _shutdownLock = new object();
 
-        public GracefulShutdownMiddleware(RequestDelegate next, IApplicationLifetime applicationLifetime)
+        private readonly ManualResetEventSlim _unloadingEvent = new ManualResetEventSlim();
+
+        public GracefulShutdownMiddleware(RequestDelegate next)
         {
             _next = next;
-
-            AppDomain.CurrentDomain.ProcessExit += OnProcessExit;
+            
             AssemblyLoadContext.Default.Unloading += OnUnloading;
-            Console.CancelKeyPress += ConsoleOnCancelKeyPress;
-            applicationLifetime.ApplicationStopping.Register(OnStopping);
-            applicationLifetime.ApplicationStopped.Register(OnStopped);
         }
 
         public async Task InvokeAsync(HttpContext context)
@@ -47,52 +44,26 @@ namespace ZeroDowntimeDeployment.Middlewares
 
             lock (_concurrentRequestsLock)
             {
-                --_concurrentRequests;
+                if (--_concurrentRequests == 0 && _shutdown)
+                {
+                    _unloadingEvent.Set();
+                }
             }
         }
 
-        public void OnShutdown()
+        private void OnUnloading(AssemblyLoadContext obj)
         {
             lock (_shutdownLock)
             {
                 _shutdown = true;
             }
-            
-            // Some wait for requests completion
-            // how to wait with non blocking manner for requests completion?
-            int concurentRequests = int.MaxValue;
-            while (concurentRequests != 0)
+
+            lock (_concurrentRequestsLock)
             {
-                lock (_concurrentRequestsLock)
-                {
-                    concurentRequests = _concurrentRequests;
-                }
+                if (_concurrentRequests == 0)
+                    return;
             }
-        }
-
-        private void OnStopped()
-        {
-            OnShutdown();
-        }
-
-        private void OnStopping()
-        {
-            OnShutdown();
-        }
-
-        private void ConsoleOnCancelKeyPress(object sender, ConsoleCancelEventArgs e)
-        {
-            OnShutdown();
-        }
-
-        private void OnProcessExit(object sender, EventArgs e)
-        {
-            OnShutdown();
-        }
-
-        private void OnUnloading(AssemblyLoadContext obj)
-        {
-            OnShutdown();
+            _unloadingEvent.Wait();
         }
     }
 }

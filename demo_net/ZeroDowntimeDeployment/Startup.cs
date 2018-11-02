@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ZeroDowntimeDeployment.Extensions;
 using ZeroDowntimeDeployment.Middlewares;
 using ZeroDowntimeDeployment.Services;
 using ZeroDowntimeDeployment.Services.Implementations;
@@ -30,7 +29,7 @@ namespace ZeroDowntimeDeployment
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseGracefulShutdown();
+            app.UseMiddleware<GracefulShutdownMiddleware>();
             app.UseMiddleware<LivenessProbeMiddleware>();
             app.UseMiddleware<ReadyMiddleware>();
 
