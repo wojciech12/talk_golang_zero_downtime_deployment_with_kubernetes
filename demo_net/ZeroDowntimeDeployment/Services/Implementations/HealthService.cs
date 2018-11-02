@@ -3,15 +3,22 @@
     public class HealthService : IHealthService
     {
         private bool _health = true;
+        private readonly object _lock = new object();
 
         public bool IsHealth()
         {
-            return _health;
+            lock (_lock)
+            {
+                return _health;
+            }
         }
 
         public void SetHealth(bool health)
         {
-            _health = health;
+            lock (_lock)
+            {
+                _health = health;
+            }
         }
     }
 }
