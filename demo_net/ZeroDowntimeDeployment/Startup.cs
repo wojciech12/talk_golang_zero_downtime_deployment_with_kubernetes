@@ -29,12 +29,14 @@ namespace ZeroDowntimeDeployment
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton<IHealthService, HealthService>();
+            services.AddSingleton<IReadyService, ReadyService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseMiddleware<HealthzMiddleware>();
+            app.UseMiddleware<ReadyMiddleware>();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
