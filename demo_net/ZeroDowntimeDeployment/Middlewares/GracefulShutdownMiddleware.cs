@@ -20,7 +20,8 @@ namespace ZeroDowntimeDeployment.Middlewares
 
         private readonly ManualResetEventSlim _unloadingEvent = new ManualResetEventSlim();
 
-        public GracefulShutdownMiddleware(RequestDelegate next,
+        public GracefulShutdownMiddleware(
+            RequestDelegate next,
             ILogger<GracefulShutdownMiddleware> logger)
         {
             _next = next;
