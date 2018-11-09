@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.IO;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using ZeroDowntimeDeployment.Services;
 
@@ -25,9 +26,15 @@ namespace ZeroDowntimeDeployment.Middlewares
                 case "/probe":
                 // Support for Zero downtime deployment with kubernetes scenarios
                 case "/healthz":
-                    context.Response.StatusCode = _healthService.IsHealth()
+                    var health = _healthService.IsHealth();
+                    context.Response.StatusCode = health
                         ? StatusCodes.Status200OK
                         : StatusCodes.Status500InternalServerError;
+                    var body = health ? "OK" : "NOT OK";
+                    using (var streamWriter = new StreamWriter(context.Response.Body))
+                    {
+                        await streamWriter.WriteAsync(body);
+                    }
                     break;
 
                 case "/dohealthz":
