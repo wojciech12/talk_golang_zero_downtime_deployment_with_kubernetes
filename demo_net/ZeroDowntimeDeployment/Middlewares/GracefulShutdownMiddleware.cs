@@ -65,14 +65,12 @@ namespace ZeroDowntimeDeployment.Middlewares
             _shutdown = true;
             ShutdownSemaphore.Release();
 
-            if (_concurrentRequests == 0)
+            if (_concurrentRequests > 0)
             {
-                _logger.LogInformation("No concurrent requests in progress, shutting down. In 5 sec.");
-                Thread.Sleep(TimeSpan.FromSeconds(5));
-                return;
+                _logger.LogInformation("Waiting for ongoing requests completion.");
+                _unloadingEvent.Wait();
             }
 
-            _unloadingEvent.Wait();
             _logger.LogInformation("Last requests were processed, shutting down. In 5 sec.");
             Thread.Sleep(TimeSpan.FromSeconds(5));
         }
