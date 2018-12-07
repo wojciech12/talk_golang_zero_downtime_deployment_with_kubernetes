@@ -16,8 +16,7 @@ namespace ZeroDowntimeDeployment.Middlewares
 
         private static int _shutdown;
         private const int ShutdownUnlocked = 0;
-        private const int ShutdownLocked = 1;
-        private const int ShutdownSet = 2;
+        private const int ShutdownSet = 1;
 
         private readonly ManualResetEventSlim _unloadingEvent = new ManualResetEventSlim();
 
@@ -27,6 +26,7 @@ namespace ZeroDowntimeDeployment.Middlewares
         {
             _next = next;
             _logger = logger;
+            _shutdown = ShutdownUnlocked;
 
             AssemblyLoadContext.Default.Unloading += OnUnloading;
         }
@@ -35,29 +35,20 @@ namespace ZeroDowntimeDeployment.Middlewares
         {
             var requestId = Guid.NewGuid();
 
-            int shutdown;
-            do
+            if (_shutdown == ShutdownSet)
             {
-                shutdown = Interlocked.CompareExchange(ref _shutdown, ShutdownLocked, ShutdownUnlocked);
-                if (shutdown == ShutdownSet)
-                {
-                    _logger.LogInformation($"GracefulShutdownMiddleware InvokeAsync {requestId} on shutdown");
-                    context.Response.StatusCode = StatusCodes.Status500InternalServerError;
-                    return;
-                }
-                else
-                {
-                    Interlocked.CompareExchange(ref _shutdown, ShutdownUnlocked, ShutdownLocked);
-                }
-            } while (shutdown == ShutdownLocked);
+                _logger.LogInformation($"GracefulShutdownMiddleware InvokeAsync {requestId} on shutdown");
+                context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+                return;
+            }
 
             Interlocked.Increment(ref _concurrentRequests);
 
             _logger.LogInformation($"GracefulShutdownMiddleware starting invoking next {requestId}");
             await _next(context);
             _logger.LogInformation($"GracefulShutdownMiddleware finished invoking next {requestId}");
-            
-            if (Interlocked.Decrement(ref _concurrentRequests) == 0 && _shutdown == 1)
+
+            if (Interlocked.Decrement(ref _concurrentRequests) == 0 && _shutdown == ShutdownSet)
             {
                 _unloadingEvent.Set();
             }
@@ -67,8 +58,7 @@ namespace ZeroDowntimeDeployment.Middlewares
         {
             _logger.LogInformation("GracefulShutdownMiddleware OnUnloading");
             _logger.LogInformation("Setting shutdown lock");
-
-            while (Interlocked.CompareExchange(ref _shutdown, ShutdownSet, ShutdownUnlocked) == ShutdownLocked) ;
+            Interlocked.Exchange(ref _shutdown, ShutdownSet);
 
             if (_concurrentRequests > 0)
             {
